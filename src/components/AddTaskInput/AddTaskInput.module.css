@@ -1,0 +1,5 @@
+.input {
+  background: var(--gray-800);
+  min-width: 50rem;
+  height: 3rem;
+}
