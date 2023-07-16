@@ -22,6 +22,7 @@ function App() {
             <TaskStatusLabel labelText={'Created tasks'} badgeLabelValue={0}/>
             <TaskStatusLabel labelText={'Completed'} badgeLabelValue={0}/>
         </div>
+          <div className={styles.dividerLine}/>
       </div>
       </div>
 
