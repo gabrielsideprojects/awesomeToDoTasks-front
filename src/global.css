@@ -38,7 +38,9 @@ body {
 body,
 input,
 textarea,
-button {
+button,
+p,
+small {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1rem;

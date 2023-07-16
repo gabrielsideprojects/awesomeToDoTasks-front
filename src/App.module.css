@@ -44,3 +44,10 @@
 .taskBoxContainer {
   margin-top: 2rem;
 }
+
+.emptyListLabelContainer {
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  margin-top: 3rem;
+}

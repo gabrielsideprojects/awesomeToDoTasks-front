@@ -1,0 +1,9 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mainIcon {
+  margin-bottom: 1rem;
+}

@@ -5,10 +5,11 @@ import './global.css'
 import { CreateTaskButton } from './components/CreateTaskButton'
 import { TaskStatusLabel } from './components/TaskStatusLabel'
 import { TaskBox } from './components/TaskBox'
+import { EmptyListLabel } from './components/EmptyListLabel'
 
 
 function App() {
-
+  const thereIsTasks = false
 
   return (
     <div>
@@ -24,10 +25,13 @@ function App() {
             <TaskStatusLabel labelText={'Completed'} badgeLabelValue={0}/>
         </div>
           <div className={styles.dividerLine}/>
-      <div className={styles.taskBoxContainer}>
-          <TaskBox text='Integer urna interdum massa libero auctor neque turpis turpis semper. 
-            Duis vel sed ames integer' isCompleted={false}/>
-      </div>
+          {
+            thereIsTasks ?   <div className={styles.taskBoxContainer}>
+            <TaskBox text='Integer urna interdum massa libero auctor neque turpis turpis semper. 
+              Duis vel sed ames integer' isCompleted={false}/>
+        </div> : <div className={styles.emptyListLabelContainer}> <EmptyListLabel/> </div>
+          }
+   
       </div>
   
       </div>
