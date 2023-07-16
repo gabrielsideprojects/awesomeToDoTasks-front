@@ -4,6 +4,7 @@ import styles from './App.module.css'
 import './global.css'
 import { CreateTaskButton } from './components/CreateTaskButton'
 import { TaskStatusLabel } from './components/TaskStatusLabel'
+import { TaskBox } from './components/TaskBox'
 
 
 function App() {
@@ -23,7 +24,12 @@ function App() {
             <TaskStatusLabel labelText={'Completed'} badgeLabelValue={0}/>
         </div>
           <div className={styles.dividerLine}/>
+      <div className={styles.taskBoxContainer}>
+          <TaskBox text='Integer urna interdum massa libero auctor neque turpis turpis semper. 
+            Duis vel sed ames integer' isCompleted={false}/>
       </div>
+      </div>
+  
       </div>
 
     </div>

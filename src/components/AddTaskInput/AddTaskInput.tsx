@@ -7,6 +7,6 @@ interface AddTaskInputProps {
 
 export function AddTaskInput({onChangeText}: AddTaskInputProps) {
     return (
-        <input type={"text"} onChange={onChangeText} className={styles.input} placeholder='Add a new task'/>
+        <input maxLength={100}  type={"text"} onChange={onChangeText} className={styles.addTaskInput} placeholder='Add a new task'/>
     );
 }

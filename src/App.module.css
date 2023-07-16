@@ -40,3 +40,7 @@
   background: var(--gray-800);
   margin-top: 2rem;
 }
+
+.taskBoxContainer {
+  margin-top: 2rem;
+}

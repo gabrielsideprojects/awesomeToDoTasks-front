@@ -1,0 +1,35 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--gray-600);
+
+  padding: 1.5rem;
+  background-color: var(--gray-800);
+}
+
+.radioButtonUnselected {
+  border: 2px solid var(--green-300);
+  background-color: transparent;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.radioButtonSelected {
+  border: 2px solid var(--green-300);
+  background-color: var(--green-500);
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-top: 1px;
+}
+
+.trashButton {
+  background-color: var(--gray-900);
+  border-width: 0;
+  cursor: pointer;
+  line-height: 0;
+  border: 0;
+}
