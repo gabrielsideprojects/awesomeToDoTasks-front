@@ -6,10 +6,17 @@ import { CreateTaskButton } from './components/CreateTaskButton'
 import { TaskStatusLabel } from './components/TaskStatusLabel'
 import { TaskBox } from './components/TaskBox'
 import { EmptyListLabel } from './components/EmptyListLabel'
+import { useGetTODO } from './service/hooks/useGetTODO'
+import { useEffect } from 'react'
 
 
 function App() {
-  const thereIsTasks = false
+  const {data: tasks, error} = useGetTODO()
+  const isThereTasks = tasks?.length
+
+  useEffect(()=>{
+    console.log('meus TODOS', tasks)
+  },[tasks])
 
   return (
     <div>
@@ -28,7 +35,7 @@ function App() {
         </div>
           <div className={styles.dividerLine}/>
           {
-            thereIsTasks ?   <div className={styles.taskBoxContainer}>
+           isThereTasks ?   <div className={styles.taskBoxContainer}>
             <TaskBox text='Integer urna interdum massa libero auctor neque turpis turpis semper. 
               Duis vel sed ames integer' isCompleted={false}/>
         </div> : <div className={styles.emptyListLabelContainer}> <EmptyListLabel/> </div>
