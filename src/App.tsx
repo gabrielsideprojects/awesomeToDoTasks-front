@@ -34,13 +34,13 @@ function App() {
           </div>
           <div className={styles.dividerLine} />
           {isThereTasks ? (
-            <div className={styles.taskBoxContainer}>
-              <TaskBox
-                text="Integer urna interdum massa libero auctor neque turpis turpis semper. 
-              Duis vel sed ames integer"
-                isCompleted={false}
-              />
-            </div>
+            <ul>
+              {tasks.map((item) => (
+                <li className={styles.taskBoxContainer} key={item.id}>
+                  <TaskBox text={item.title} isCompleted={!!item.completedAt} />
+                </li>
+              ))}
+            </ul>
           ) : (
             <div className={styles.emptyListLabelContainer}>
               {" "}

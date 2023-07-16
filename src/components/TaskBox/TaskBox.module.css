@@ -33,3 +33,7 @@
   line-height: 0;
   border: 0;
 }
+
+.textLabel {
+  text-decoration: line-through;
+}
