@@ -18,7 +18,9 @@ function App() {
      <div className={styles.mainContainer}>
         <div className={styles.inputAndCreateButtonContainer}>
             <AddTaskInput/>
-            <CreateTaskButton/>
+            <div className={styles.createButtonContainer}>
+              <CreateTaskButton/>
+            </div>
         </div>
         <div className={styles.createdTasksAndConcludedContainer}>
             <TaskStatusLabel labelText={'Created tasks'} badgeLabelValue={0}/>
