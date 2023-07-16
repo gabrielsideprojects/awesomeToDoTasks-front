@@ -1,5 +1,5 @@
 .createTaskButton {
-  background: var(--blue-dark);
+  background: var(--green-500);
   padding: 0.8rem 1rem;
   justify-content: center;
   border-radius: 4px;
@@ -11,4 +11,8 @@
 .plusIconContainer {
   margin-left: 0.2rem;
   margin-top: 0.23rem;
+}
+
+p {
+  font-weight: 700;
 }

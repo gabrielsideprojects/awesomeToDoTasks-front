@@ -13,4 +13,9 @@
 .inputAndCreateButtonContainer {
   display: flex;
   flex-direction: row;
+  margin-top: -0.5rem;
+}
+
+.buttonContainer {
+  margin-left: 1rem;
 }

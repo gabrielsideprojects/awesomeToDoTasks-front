@@ -1,5 +1,8 @@
-.input {
+input {
   background: var(--gray-800);
   min-width: 50rem;
   height: 3rem;
+  border-width: 0;
+  border-radius: 0.2rem;
+  padding-left: 1rem;
 }

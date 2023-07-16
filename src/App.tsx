@@ -14,7 +14,9 @@ function App() {
       <div className={styles.wrapper}>
         <div className={styles.inputAndCreateButtonContainer}>
           <AddTaskInput/>
-          <CreateTaskButton/>
+          <div className={styles.buttonContainer}>
+            <CreateTaskButton/>
+          </div>
         </div>
       </div>
     </div>
