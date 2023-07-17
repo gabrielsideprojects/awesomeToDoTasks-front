@@ -22,6 +22,17 @@ function App() {
     console.log("meus TODOS", tasks);
   }, [tasks]);
 
+  function mountCompletedTasksBadgeValueText() {
+    if (tasks) {
+      if (tasks.length > 0) {
+        const completedTasks = tasks?.filter((task) => task.completedAt !== "")
+          .length;
+        return `${completedTasks} of ${tasks.length}`;
+      }
+    }
+    return "0";
+  }
+
   return (
     <div>
       <Header />
@@ -34,8 +45,14 @@ function App() {
             </div>
           </div>
           <div className={styles.createdTasksAndConcludedContainer}>
-            <TaskStatusLabel labelText={"Created tasks"} badgeLabelValue={0} />
-            <TaskStatusLabel labelText={"Completed"} badgeLabelValue={0} />
+            <TaskStatusLabel
+              labelText={"Created tasks"}
+              badgeLabelValue={String(tasks?.length ?? 0)}
+            />
+            <TaskStatusLabel
+              labelText={"Completed"}
+              badgeLabelValue={mountCompletedTasksBadgeValueText()}
+            />
           </div>
           <div className={styles.dividerLine} />
           {isThereTasks ? (
