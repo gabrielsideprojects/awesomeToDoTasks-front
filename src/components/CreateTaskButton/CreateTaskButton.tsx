@@ -1,4 +1,4 @@
-import styles from "./CrateTaskButton.module.css";
+import styles from "./CreateTaskButton.module.css";
 import { PlusCircle } from "phosphor-react";
 
 interface CreateTaskButtonProps {
