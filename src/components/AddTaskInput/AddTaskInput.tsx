@@ -1,12 +1,19 @@
-import styles from './AddTaskInput.module.css'
-
+import styles from "./AddTaskInput.module.css";
 
 interface AddTaskInputProps {
-    onChangeText?: ()=> void;
+  onChangeText: (value: string) => void;
+  value: string;
 }
 
-export function AddTaskInput({onChangeText}: AddTaskInputProps) {
-    return (
-        <input maxLength={100}  type={"text"} onChange={onChangeText} className={styles.addTaskInput} placeholder='Add a new task'/>
-    );
+export function AddTaskInput({ onChangeText, value }: AddTaskInputProps) {
+  return (
+    <input
+      maxLength={100}
+      value={value}
+      type={"text"}
+      onChange={(e) => onChangeText(e.target.value)}
+      className={styles.addTaskInput}
+      placeholder="Add a new task"
+    />
+  );
 }

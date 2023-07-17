@@ -7,10 +7,13 @@ import { TaskStatusLabel } from "./components/TaskStatusLabel";
 import { TaskBox } from "./components/TaskBox";
 import { EmptyListLabel } from "./components/EmptyListLabel";
 import { useGetTODO } from "./service/hooks/useGetTODO";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useMakeTODO } from "./service/hooks/useMakeTODO";
 
 function App() {
+  const [taskText, setTaskText] = useState("");
   const { data: tasks } = useGetTODO();
+  const { mutate } = useMakeTODO();
   const isThereTasks = tasks?.length;
 
   useEffect(() => {
@@ -23,9 +26,9 @@ function App() {
       <div className={styles.wrapper}>
         <div className={styles.mainContainer}>
           <div className={styles.inputAndCreateButtonContainer}>
-            <AddTaskInput />
+            <AddTaskInput onChangeText={setTaskText} value={taskText} />
             <div className={styles.createButtonContainer}>
-              <CreateTaskButton />
+              <CreateTaskButton onClick={() => mutate(taskText)} />
             </div>
           </div>
           <div className={styles.createdTasksAndConcludedContainer}>
@@ -43,8 +46,7 @@ function App() {
             </ul>
           ) : (
             <div className={styles.emptyListLabelContainer}>
-              {" "}
-              <EmptyListLabel />{" "}
+              <EmptyListLabel />
             </div>
           )}
         </div>

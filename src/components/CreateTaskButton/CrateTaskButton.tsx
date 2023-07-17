@@ -1,14 +1,17 @@
-import styles from './CrateTaskButton.module.css'
-import { PlusCircle } from 'phosphor-react'
+import styles from "./CrateTaskButton.module.css";
+import { PlusCircle } from "phosphor-react";
 
+interface CreateTaskButtonProps {
+  onClick: () => void;
+}
 
-export function CreateTaskButton() {
-    return (
-        <div className={styles.createTaskButton}>
-               <p>Create</p>
-            <div className={styles.plusIconContainer}>
-               <PlusCircle/>
-            </div>
-        </div>
-    );
+export function CreateTaskButton({ onClick }: CreateTaskButtonProps) {
+  return (
+    <button onClick={onClick} className={styles.createTaskButton}>
+      <p className={styles.createText}>Create</p>
+      <div className={styles.plusIconContainer}>
+        <PlusCircle />
+      </div>
+    </button>
+  );
 }

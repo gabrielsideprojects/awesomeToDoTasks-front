@@ -7,13 +7,16 @@
   flex-direction: row;
   cursor: pointer;
   align-items: center;
+  border: 0;
 }
 
 .plusIconContainer {
   margin-left: 0.2rem;
   margin-top: 0.23rem;
+  color: var(--white);
 }
 
-p {
+.createText {
   font-weight: 700;
+  color: var(--white);
 }
