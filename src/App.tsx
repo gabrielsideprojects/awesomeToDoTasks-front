@@ -19,6 +19,7 @@ function App() {
     data: tasks,
     isLoading: isLoadingGetTodoTasks,
     isError: isErrorGetTodoTasks,
+    refetch: refetchTODOTasks,
   } = useGetTODO();
   const { mutate } = useCreateTODO();
   const { mutate: deleteTaskMutate } = useDeleteTODO();
@@ -49,7 +50,8 @@ function App() {
         <div className={styles.listLabelContainer}>
           <ListInfoLabel
             title={"Error to obtain TODO tasks"}
-            subtitle={"Please try again"}
+            subtitle={"Touch here to try again"}
+            refetch={refetchTODOTasks}
             icon={<WarningOctagon size={50} />}
           />
         </div>

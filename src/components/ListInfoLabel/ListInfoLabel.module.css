@@ -7,3 +7,7 @@
 .mainIcon {
   margin-bottom: 1rem;
 }
+
+.refetchButtonWithRefetchFn {
+  cursor: pointer;
+}
