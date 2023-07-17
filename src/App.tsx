@@ -8,13 +8,13 @@ import { TaskBox } from "./components/TaskBox";
 import { EmptyListLabel } from "./components/EmptyListLabel";
 import { useGetTODO } from "./service/hooks/useGetTODO";
 import { useEffect, useState } from "react";
-import { useMakeTODO } from "./service/hooks/useMakeTODO";
-import { useDeleteTODO } from "./service/hooks/useDeleteTODO.ts/useDeleteTODO";
+import { useCreateTODO } from "./service/hooks/useCreateTODO";
+import { useDeleteTODO } from "./service/hooks/useDeleteTODO";
 
 function App() {
   const [taskText, setTaskText] = useState("");
   const { data: tasks } = useGetTODO();
-  const { mutate } = useMakeTODO();
+  const { mutate } = useCreateTODO();
   const { mutate: deleteTaskMutate } = useDeleteTODO();
   const isThereTasks = tasks?.length;
 
