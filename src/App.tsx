@@ -5,16 +5,21 @@ import "./global.css";
 import { CreateTaskButton } from "./components/CreateTaskButton";
 import { TaskStatusLabel } from "./components/TaskStatusLabel";
 import { TaskBox } from "./components/TaskBox";
-import { EmptyListLabel } from "./components/EmptyListLabel";
+import { ListInfoLabel } from "./components/ListInfoLabel";
 import { useGetTODO } from "./service/hooks/useGetTODO";
 import { useEffect, useState } from "react";
 import { useCreateTODO } from "./service/hooks/useCreateTODO";
 import { useDeleteTODO } from "./service/hooks/useDeleteTODO";
 import { useMarkTaskAsCompleted } from "./service/hooks/useMarkTaskAsCompleted";
+import { Clipboard, WarningOctagon } from "phosphor-react";
 
 function App() {
   const [taskText, setTaskText] = useState("");
-  const { data: tasks } = useGetTODO();
+  const {
+    data: tasks,
+    isLoading: isLoadingGetTodoTasks,
+    isError: isErrorGetTodoTasks,
+  } = useGetTODO();
   const { mutate } = useCreateTODO();
   const { mutate: deleteTaskMutate } = useDeleteTODO();
   const { mutate: markTaskAsCompleted } = useMarkTaskAsCompleted();
@@ -33,6 +38,50 @@ function App() {
       }
     }
     return "0";
+  }
+
+  function renderTaskLists() {
+    if (isLoadingGetTodoTasks) {
+      return <p>is loading</p>;
+    }
+    if (isErrorGetTodoTasks) {
+      return (
+        <div className={styles.listLabelContainer}>
+          <ListInfoLabel
+            title={"Error to obtain TODO tasks"}
+            subtitle={"Please try again"}
+            icon={<WarningOctagon size={50} />}
+          />
+        </div>
+      );
+    }
+
+    if (isThereTasks) {
+      return (
+        <ul>
+          {tasks.map((item) => (
+            <li className={styles.taskBoxContainer} key={item.id}>
+              <TaskBox
+                onMarkTaskAsCompletedPress={() => markTaskAsCompleted(item.id)}
+                onTrashIconPress={() => deleteTaskMutate(item.id)}
+                text={item.title}
+                isCompleted={!!item.completedAt}
+              />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    return (
+      <div className={styles.listLabelContainer}>
+        <ListInfoLabel
+          title={"You don't have tasks yet"}
+          subtitle={"Create tasks and organize your TODO itens"}
+          icon={<Clipboard size={50} />}
+        />
+      </div>
+    );
   }
 
   return (
@@ -62,26 +111,7 @@ function App() {
             />
           </div>
           <div className={styles.dividerLine} />
-          {isThereTasks ? (
-            <ul>
-              {tasks.map((item) => (
-                <li className={styles.taskBoxContainer} key={item.id}>
-                  <TaskBox
-                    onMarkTaskAsCompletedPress={() =>
-                      markTaskAsCompleted(item.id)
-                    }
-                    onTrashIconPress={() => deleteTaskMutate(item.id)}
-                    text={item.title}
-                    isCompleted={!!item.completedAt}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className={styles.emptyListLabelContainer}>
-              <EmptyListLabel />
-            </div>
-          )}
+          {renderTaskLists()}
         </div>
       </div>
     </div>

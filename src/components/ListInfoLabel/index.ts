@@ -1,0 +1,1 @@
+export { ListInfoLabel } from "./ListInfoLabel";

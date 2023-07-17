@@ -1,1 +1,0 @@
-export {EmptyListLabel} from './EmptyListLabel';

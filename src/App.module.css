@@ -45,7 +45,7 @@
   margin-top: 1rem;
 }
 
-.emptyListLabelContainer {
+.listLabelContainer {
   justify-content: center;
   display: flex;
   flex: 1;
