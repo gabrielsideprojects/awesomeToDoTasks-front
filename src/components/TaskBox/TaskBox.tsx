@@ -5,9 +5,15 @@ interface TaskBoxProps {
   text: string;
   isCompleted: boolean;
   onTrashIconPress: () => void;
+  onMarkTaskAsCompletedPress: () => void;
 }
 
-export function TaskBox({ text, isCompleted, onTrashIconPress }: TaskBoxProps) {
+export function TaskBox({
+  text,
+  isCompleted,
+  onTrashIconPress,
+  onMarkTaskAsCompletedPress,
+}: TaskBoxProps) {
   return (
     <div className={styles.mainContainer}>
       {isCompleted ? (
@@ -19,7 +25,10 @@ export function TaskBox({ text, isCompleted, onTrashIconPress }: TaskBoxProps) {
         </>
       ) : (
         <>
-          <button className={styles.radioButtonUnselected} />
+          <button
+            onClick={onMarkTaskAsCompletedPress}
+            className={styles.radioButtonUnselected}
+          />
           <label htmlFor="regular">{text}</label>
         </>
       )}

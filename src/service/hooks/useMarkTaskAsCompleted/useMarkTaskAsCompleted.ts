@@ -2,18 +2,18 @@ import { MutationFunction, useMutation, useQueryClient } from "react-query";
 import { api } from "../../../api";
 import { ResponseData } from "../../../interfaces/Api";
 
-const deleteTODO: MutationFunction<ResponseData, number> = async (
-  taskId: number,
+const markTaskAsCompleted: MutationFunction<ResponseData, number> = async (
+  id: number,
 ) => {
-  const result = await api.delete(`tasks/${taskId}`);
+  const result = await api.patch(`tasks/complete-task/${id}`);
   return result.data;
 };
 
-export function useDeleteTODO() {
+export function useMarkTaskAsCompleted() {
   const client = useQueryClient();
   return useMutation<ResponseData, Error, number>(
-    ["DeleteTodos"],
-    async (taskId: number) => await deleteTODO(taskId),
+    ["MarkTaskAsCompleted"],
+    async (id: number) => await markTaskAsCompleted(id),
     {
       onSuccess: () => {
         client.invalidateQueries("TODOS");
