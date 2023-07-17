@@ -4,9 +4,10 @@ import { Check, Trash } from "phosphor-react";
 interface TaskBoxProps {
   text: string;
   isCompleted: boolean;
+  onTrashIconPress: () => void;
 }
 
-export function TaskBox({ text, isCompleted }: TaskBoxProps) {
+export function TaskBox({ text, isCompleted, onTrashIconPress }: TaskBoxProps) {
   return (
     <div className={styles.mainContainer}>
       {isCompleted ? (
@@ -23,7 +24,7 @@ export function TaskBox({ text, isCompleted }: TaskBoxProps) {
         </>
       )}
 
-      <button className={styles.trashButton}>
+      <button onClick={onTrashIconPress} className={styles.trashButton}>
         <Trash color="#8d8d99" />
       </button>
     </div>

@@ -9,11 +9,13 @@ import { EmptyListLabel } from "./components/EmptyListLabel";
 import { useGetTODO } from "./service/hooks/useGetTODO";
 import { useEffect, useState } from "react";
 import { useMakeTODO } from "./service/hooks/useMakeTODO";
+import { useDeleteTODO } from "./service/hooks/useDeleteTODO.ts/useDeleteTODO";
 
 function App() {
   const [taskText, setTaskText] = useState("");
   const { data: tasks } = useGetTODO();
   const { mutate } = useMakeTODO();
+  const { mutate: deleteTaskMutate } = useDeleteTODO();
   const isThereTasks = tasks?.length;
 
   useEffect(() => {
@@ -40,7 +42,11 @@ function App() {
             <ul>
               {tasks.map((item) => (
                 <li className={styles.taskBoxContainer} key={item.id}>
-                  <TaskBox text={item.title} isCompleted={!!item.completedAt} />
+                  <TaskBox
+                    onTrashIconPress={() => deleteTaskMutate(item.id)}
+                    text={item.title}
+                    isCompleted={!!item.completedAt}
+                  />
                 </li>
               ))}
             </ul>
