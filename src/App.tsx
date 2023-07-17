@@ -13,6 +13,7 @@ import { useDeleteTODO } from "./service/hooks/useDeleteTODO";
 import { useMarkTaskAsCompleted } from "./service/hooks/useMarkTaskAsCompleted";
 import { Clipboard, WarningOctagon } from "phosphor-react";
 import { Toaster } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 function App() {
   const [taskText, setTaskText] = useState("");
@@ -22,9 +23,14 @@ function App() {
     isError: isErrorGetTodoTasks,
     refetch: refetchTODOTasks,
   } = useGetTODO();
-  const { mutate } = useCreateTODO();
-  const { mutate: deleteTaskMutate } = useDeleteTODO();
-  const { mutate: markTaskAsCompleted } = useMarkTaskAsCompleted();
+  const { mutate, isLoading: isLoadingCreateTODO } = useCreateTODO();
+  const {
+    mutate: markTaskAsCompleted,
+    isLoading: isLoadingMarkTaskAsCompleted,
+  } = useMarkTaskAsCompleted();
+  const { mutate: deleteTaskMutate, isLoading: isLoadingDeleteTODO } =
+    useDeleteTODO();
+
   const isThereTasks = tasks?.length;
 
   function mountCompletedTasksBadgeValueText() {
@@ -104,6 +110,17 @@ function App() {
             <TaskStatusLabel
               labelText={"Created tasks"}
               badgeLabelValue={String(tasks?.length ?? 0)}
+            />
+            <ClipLoader
+              color={"#00875f"}
+              loading={
+                isLoadingCreateTODO ||
+                isLoadingDeleteTODO ||
+                isLoadingMarkTaskAsCompleted
+              }
+              size={15}
+              aria-label="Loading Spinner"
+              data-testid="loader"
             />
             <TaskStatusLabel
               labelText={"Completed"}
