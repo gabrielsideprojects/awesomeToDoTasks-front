@@ -34,6 +34,11 @@
   border: 0;
 }
 
+.trashButton:hover {
+  background-color: var(--red-500);
+  border-radius: 2rem;
+}
+
 .textLabel {
   text-decoration: line-through;
 }

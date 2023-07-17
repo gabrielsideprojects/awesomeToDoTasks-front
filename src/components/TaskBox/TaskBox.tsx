@@ -34,7 +34,7 @@ export function TaskBox({
       )}
 
       <button onClick={onTrashIconPress} className={styles.trashButton}>
-        <Trash color="#8d8d99" />
+        <Trash color="white" />
       </button>
     </div>
   );
