@@ -43,7 +43,12 @@ function App() {
           <div className={styles.inputAndCreateButtonContainer}>
             <AddTaskInput onChangeText={setTaskText} value={taskText} />
             <div className={styles.createButtonContainer}>
-              <CreateTaskButton onClick={() => mutate(taskText)} />
+              <CreateTaskButton
+                onClick={() => {
+                  setTaskText("");
+                  mutate(taskText);
+                }}
+              />
             </div>
           </div>
           <div className={styles.createdTasksAndConcludedContainer}>
