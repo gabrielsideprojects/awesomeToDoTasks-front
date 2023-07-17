@@ -1,6 +1,7 @@
 import { MutationFunction, useMutation, useQueryClient } from "react-query";
 import { api } from "../../../api";
 import { ResponseData } from "../../../interfaces/Api";
+import toast from "react-hot-toast";
 
 const createTODO: MutationFunction<ResponseData, string> = async (
   title: string,
@@ -10,6 +11,8 @@ const createTODO: MutationFunction<ResponseData, string> = async (
 };
 
 export function useCreateTODO() {
+  const notifyErrorToCreateTask = () =>
+    toast.error("Error to create a task. Please try again");
   const client = useQueryClient();
   return useMutation<ResponseData, Error, string>(
     ["MakeTodos"],
@@ -17,6 +20,9 @@ export function useCreateTODO() {
     {
       onSuccess: () => {
         client.invalidateQueries("TODOS");
+      },
+      onError: () => {
+        notifyErrorToCreateTask();
       },
     },
   );

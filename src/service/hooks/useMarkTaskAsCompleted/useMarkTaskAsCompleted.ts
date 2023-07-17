@@ -1,6 +1,7 @@
 import { MutationFunction, useMutation, useQueryClient } from "react-query";
 import { api } from "../../../api";
 import { ResponseData } from "../../../interfaces/Api";
+import toast from "react-hot-toast";
 
 const markTaskAsCompleted: MutationFunction<ResponseData, number> = async (
   id: number,
@@ -10,6 +11,8 @@ const markTaskAsCompleted: MutationFunction<ResponseData, number> = async (
 };
 
 export function useMarkTaskAsCompleted() {
+  const notifyErrorToMarkTaskAsCompleted = () =>
+    toast.error("Error to mark the task as completed . Please try again");
   const client = useQueryClient();
   return useMutation<ResponseData, Error, number>(
     ["MarkTaskAsCompleted"],
@@ -17,6 +20,9 @@ export function useMarkTaskAsCompleted() {
     {
       onSuccess: () => {
         client.invalidateQueries("TODOS");
+      },
+      onError: () => {
+        notifyErrorToMarkTaskAsCompleted();
       },
     },
   );

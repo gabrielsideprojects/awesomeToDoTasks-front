@@ -7,11 +7,12 @@ import { TaskStatusLabel } from "./components/TaskStatusLabel";
 import { TaskBox } from "./components/TaskBox";
 import { ListInfoLabel } from "./components/ListInfoLabel";
 import { useGetTODO } from "./service/hooks/useGetTODO";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCreateTODO } from "./service/hooks/useCreateTODO";
 import { useDeleteTODO } from "./service/hooks/useDeleteTODO";
 import { useMarkTaskAsCompleted } from "./service/hooks/useMarkTaskAsCompleted";
 import { Clipboard, WarningOctagon } from "phosphor-react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [taskText, setTaskText] = useState("");
@@ -25,10 +26,6 @@ function App() {
   const { mutate: deleteTaskMutate } = useDeleteTODO();
   const { mutate: markTaskAsCompleted } = useMarkTaskAsCompleted();
   const isThereTasks = tasks?.length;
-
-  useEffect(() => {
-    console.log("meus TODOS", tasks);
-  }, [tasks]);
 
   function mountCompletedTasksBadgeValueText() {
     if (tasks) {
@@ -93,6 +90,7 @@ function App() {
         <div className={styles.mainContainer}>
           <div className={styles.inputAndCreateButtonContainer}>
             <AddTaskInput onChangeText={setTaskText} value={taskText} />
+            <Toaster />
             <div className={styles.createButtonContainer}>
               <CreateTaskButton
                 onClick={() => {
